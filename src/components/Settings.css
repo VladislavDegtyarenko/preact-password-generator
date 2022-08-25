@@ -1,0 +1,19 @@
+.settings {
+   margin-top: 1em;
+}
+
+.settings h3 {
+   font-size: 1.25em;
+   margin-top: 0;
+}
+
+.generate {
+   font-size: 1em;
+   padding: 0.5em 1em;
+   margin-top: 1em;
+   border: none;
+   border-radius: var(--border-radius);
+   background-color: var(--accent-color);
+   color: var(--light-color);
+   cursor: pointer;
+}

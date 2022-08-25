@@ -1,0 +1,23 @@
+.Header {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-bottom: 1.5em;
+}
+
+.Header h1 {
+   text-align: center;
+   margin-top: 0;
+   margin-bottom: 0;
+   font-size: 2em;
+   font-weight: 700;
+}
+
+.Header img {
+   width: 2em;
+   height: 2em;
+   object-fit: contain;
+   position: relative;
+   top: 0.125em;
+   margin-right: 0.5em;
+}

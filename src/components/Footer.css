@@ -1,0 +1,15 @@
+footer {
+   font-size: 0.675em;
+   text-align: center;
+   color: var(--light-color);
+   margin-top: auto;
+   padding-top: 1em;
+}
+
+footer div:not(:last-child) {
+   margin-bottom: 0.125em;
+}
+
+footer a {
+   color: var(--light-color);
+}
