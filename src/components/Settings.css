@@ -16,4 +16,13 @@
    background-color: var(--accent-color);
    color: var(--light-color);
    cursor: pointer;
+   transition: var(--hover-glow-transition);
+}
+
+.generate:hover {
+   box-shadow: var(--hover-glow-shadow);
+}
+
+.generate:active {
+   background-color: var(--accent-color-pressed);
 }

@@ -13,7 +13,7 @@ function Checkbox(props) {
             checked={checked}
             onChange={handleChange}
          />
-         <span>{checked && "✓"}</span>
+         <span className="slider"></span>
          <label htmlFor={name}>
             {name}
          </label>

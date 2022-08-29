@@ -8,16 +8,19 @@ body {
    color: var(--light-color);
    --dark-color: #192e4a;
    --mid-color: #457b9d;
-   --mid-alt-color: #a8dadc;
+   --mid-alt-color: #bbb;
    --light-color: #eee;
    --accent-color: #dc3643;
+   --accent-color-pressed: #d42534;
    --poor-password-color: hsl(355, 70%, 42%);
    --average-password-color: hsl(395, 70%, 42%);
    --strong-password-color: hsl(455, 70%, 42%);
    --very-strong-password-color: hsl(515, 70%, 42%);
    --godlike-password-color: hsl(555, 70%, 35%);
-   --shadow-color: #00000055;
+   --shadow-color: #33333366;
    --border-radius: 0.5em;
+   --hover-glow-shadow: 0 0 0.5em #dc3643aa;
+   --hover-glow-transition: box-shadow 0.15s linear;
 }
 
 code {
