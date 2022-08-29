@@ -1,6 +1,6 @@
 # Password Generator
 
-<img src="https://vladislavdegtyarenko.github.io/preact-password-generator/src/password.svg" width="200px"/>
+<img src="https://vladislavdegtyarenko.github.io/preact-password-generator/assets/password.e901409f.svg" width="200px"/>
 
 **Password Generator** developed using [Preact (lightweight React alternative)](https://preactjs.com/) and [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API)
 
