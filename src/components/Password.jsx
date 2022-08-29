@@ -1,5 +1,6 @@
 import Box from "./../layout/Box";
-import copyIcon from "./../assets/copy.png";
+//import copyIcon from "./../assets/copy.png";
+import { CopyIcon } from "../assets/copy";
 
 import "./Password.css";
 
@@ -40,7 +41,7 @@ function Password(props) {
             <div className="password__inner">
                <div className="password__text">{password || " "}</div>
                <button className="password__copy" onClick={copy}>
-                  <img src={copyIcon} alt="" />
+                  <CopyIcon />
                   <span className="tooltip">Copy</span>
                </button>
                <div className="password__level">
