@@ -14,99 +14,102 @@ import CopiedModal from "./components/CopiedModal";
 import "./App.css";
 
 function App() {
-   const [settings, setSettings] = useState({
-      lowercase: true,
-      uppercase: true,
-      numbers: true,
-      symbols: false,
-      length: 8,
-   });
+  const [settings, setSettings] = useState({
+    lowercase: true,
+    uppercase: true,
+    numbers: true,
+    symbols: false,
+    length: 8,
+  });
 
-   const [password, setPassword] = useState("");
-   const [copiedModal, setCopiedModal] = useState(false);
+  const [password, setPassword] = useState("");
+  const [copiedModal, setCopiedModal] = useState(false);
 
-   useEffect(() => {
-      generatePassword();
-   }, [settings]);
+  useEffect(() => {
+    generatePassword();
+  }, [settings]);
 
-   const generatePassword = () => {
-      const lowercase = "abcdefghijklmnopqrstuvwxyz";
-      const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-      const numbers = "123456789";
-      const symbols = "~`!@#$%^&*()_-+={[}]|:;'<,>.?/";
+  const generatePassword = () => {
+    const lowercase = "abcdefghijklmnopqrstuvwxyz";
+    const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const numbers = "123456789";
+    const symbols = "~`!@#$%^&*()_-+={[}]|:;'<,>.?/";
 
-      let allowedCharacters = "";
+    let allowedCharacters = "";
 
-      if (settings.lowercase) allowedCharacters += lowercase;
-      if (settings.uppercase) allowedCharacters += uppercase;
-      if (settings.numbers) allowedCharacters += numbers;
-      if (settings.symbols) allowedCharacters += symbols;
+    if (settings.lowercase) allowedCharacters += lowercase;
+    if (settings.uppercase) allowedCharacters += uppercase;
+    if (settings.numbers) allowedCharacters += numbers;
+    if (settings.symbols) allowedCharacters += symbols;
 
-      const indexes = window.crypto.getRandomValues(new Uint32Array(settings.length));
+    const indexes = window.crypto.getRandomValues(
+      new Uint32Array(settings.length)
+    );
 
-      let password = "";
+    let password = "";
 
-      if (!allowedCharacters) return setPassword("");
+    if (!allowedCharacters) return setPassword("");
 
-      for (const index of indexes) {
-         password += allowedCharacters[index % allowedCharacters.length];
-      }
+    for (const index of indexes) {
+      password += allowedCharacters[index % allowedCharacters.length];
+    }
 
-      setPassword(password);
-   };
+    setPassword(password);
+  };
 
-   const changeSettings = (e) => {
-      const { name, value, type, checked } = e.target;
+  const changeSettings = (e) => {
+    const { name, value, type, checked } = e.target;
 
-      setSettings((prevSettings) => ({
-         ...prevSettings,
-         [name]: type === "checkbox" ? checked : value,
-      }));
-   };
+    setSettings((prevSettings) => ({
+      ...prevSettings,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
 
-   const copyToClipboard = () => {
-      console.log(navigator.clipboard);
-      if (!navigator || !navigator.clipboard) return;
-
-      navigator?.clipboard?.writeText(password);
-      //alert("Copied!");
+  const copyToClipboard = async () => {
+    try {
+      await navigator?.clipboard?.writeText?.(password);
       showCopiedModal();
-   };
+    } catch (error) {
+      console.warn(`Unable to write to clipboard, ${error}`);
+    }
+  };
 
-   const showCopiedModal = () => {
-      setCopiedModal(true);
+  const showCopiedModal = () => {
+    setCopiedModal(true);
 
-      setTimeout(() => {
-         setCopiedModal(false);
-      }, 3000);
-   };
-
-   const hideCopiedModal = () => {
+    setTimeout(() => {
       setCopiedModal(false);
-   };
+    }, 3000);
+  };
 
-   return (
-      /* prettier-ignore */
-      <div className="App">
-         <Container>
-            <div className="App__inner">
-            <Header />
-               <Password
-                  password={password}
-                  length={settings.length}
-                  copy={copyToClipboard}
-               />
-               <Settings
-                  settings={settings}
-                  changeSettings={(e) => changeSettings(e)}
-                  generatePassword={generatePassword}
-               />
-               <Footer />
-            </div>
-         </Container>
-         {copiedModal && <CopiedModal isShown={copiedModal} close={hideCopiedModal} />}
-      </div>
-   );
+  const hideCopiedModal = () => {
+    setCopiedModal(false);
+  };
+
+  return (
+    <div className="App">
+      <Container>
+        <div className="App__inner">
+          <Header />
+          <Password
+            password={password}
+            length={settings.length}
+            copy={copyToClipboard}
+          />
+          <Settings
+            settings={settings}
+            changeSettings={(e) => changeSettings(e)}
+            generatePassword={generatePassword}
+          />
+          <Footer />
+        </div>
+      </Container>
+      {copiedModal && (
+        <CopiedModal isShown={copiedModal} close={hideCopiedModal} />
+      )}
+    </div>
+  );
 }
 
 export default App;
