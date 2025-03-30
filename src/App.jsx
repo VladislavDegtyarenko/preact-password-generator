@@ -9,6 +9,9 @@ import Settings from "./components/Settings";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
+// Utils
+import { generatePasswordFromSettings } from "./utils/generatePasswordFromSettings";
+
 // Styles
 import "./App.css";
 
@@ -31,31 +34,9 @@ function App() {
    }, [settings]);
 
    const generatePassword = () => {
-      const lowercase = "abcdefghijklmnopqrstuvwxyz";
-      const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-      const numbers = "0123456789";
-      const symbols = "~`!@#$%^&*()_-+={[}]|:;'<,>.?/";
+      const newPassword = generatePasswordFromSettings(settings);
 
-      let allowedCharacters = "";
-
-      if (settings.lowercase) allowedCharacters += lowercase;
-      if (settings.uppercase) allowedCharacters += uppercase;
-      if (settings.numbers) allowedCharacters += numbers;
-      if (settings.symbols) allowedCharacters += symbols;
-
-      const indexes = window.crypto.getRandomValues(
-         new Uint32Array(settings.length)
-      );
-
-      let password = "";
-
-      if (!allowedCharacters) return setPassword("");
-
-      for (const index of indexes) {
-         password += allowedCharacters[index % allowedCharacters.length];
-      }
-
-      setPassword(password);
+      setPassword(newPassword);
    };
 
    const changeSettings = (e) => {

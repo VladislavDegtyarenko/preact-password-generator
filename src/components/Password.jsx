@@ -4,38 +4,20 @@ import { CopyIcon } from "../assets/copy";
 
 import "./Password.css";
 import { CheckIcon } from "../assets/check";
+import { getPasswordStrength } from "../utils/getPasswordStrength";
+import { getStrengthLabel } from "../utils/getStrengthLabel";
 
 function Password(props) {
    const { password, length } = props;
 
    const { copied, triggerCopied } = useCopied();
 
-   let width;
-   let backgroundColor;
-
-   if (length >= 24) {
-      width = "100%";
-      backgroundColor = "var(--godlike-password-color)";
-   } else if (length >= 16) {
-      width = "100%";
-      backgroundColor = "var(--very-strong-password-color)";
-   } else if (length >= 12) {
-      width = "75%";
-      backgroundColor = "var(--strong-password-color)";
-   } else if (length >= 8) {
-      width = "50%";
-      backgroundColor = "var(--average-password-color)";
-   } else if (length >= 4) {
-      width = "25%";
-      backgroundColor = "var(--poor-password-color)";
-   } else {
-      width = "0%";
-      backgroundColor = "var(--mid-color)";
-   }
+   const score = getPasswordStrength(password);
+   const { label, color, width } = getStrengthLabel(score);
 
    const passwordLevelStyles = {
       width,
-      backgroundColor,
+      backgroundColor: color,
    };
 
    const copy = async () => {
@@ -55,6 +37,7 @@ function Password(props) {
                <button
                   className={`password__copy${copied ? " success" : ""}`}
                   onClick={copy}
+                  aria-label="Copy password"
                >
                   {copied ? <CheckIcon /> : <CopyIcon />}
                   <span
