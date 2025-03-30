@@ -19,12 +19,15 @@ function App() {
       numbers: true,
       symbols: false,
       length: 8,
+      autoGenerate: true,
    });
 
    const [password, setPassword] = useState("");
 
    useEffect(() => {
-      generatePassword();
+      if (settings.autoGenerate) {
+         generatePassword();
+      }
    }, [settings]);
 
    const generatePassword = () => {

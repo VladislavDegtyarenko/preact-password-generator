@@ -12,16 +12,43 @@ function Settings(props) {
          <Box>
             <h3>Customize your password</h3>
 
-            <Length value={settings.length} handleChange={(e) => changeSettings(e)} />
+            <Length
+               value={settings.length}
+               handleChange={(e) => changeSettings(e)}
+            />
 
-            <Checkbox name="uppercase" checked={settings.uppercase} handleChange={changeSettings} />
-            <Checkbox name="lowercase" checked={settings.lowercase} handleChange={changeSettings} />
-            <Checkbox name="numbers" checked={settings.numbers} handleChange={changeSettings} />
-            <Checkbox name="symbols" checked={settings.symbols} handleChange={changeSettings} />
+            <Checkbox
+               name="uppercase"
+               checked={settings.uppercase}
+               handleChange={changeSettings}
+            />
+            <Checkbox
+               name="lowercase"
+               checked={settings.lowercase}
+               handleChange={changeSettings}
+            />
+            <Checkbox
+               name="numbers"
+               checked={settings.numbers}
+               handleChange={changeSettings}
+            />
+            <Checkbox
+               name="symbols"
+               checked={settings.symbols}
+               handleChange={changeSettings}
+            />
 
-            <button className="generate" onClick={generatePassword}>
-               Generate
-            </button>
+            <div className="generate-wrapper">
+               <button className="generate" onClick={generatePassword}>
+                  Generate
+               </button>
+
+               <Checkbox
+                  name="autoGenerate"
+                  checked={settings.autoGenerate}
+                  handleChange={changeSettings}
+               />
+            </div>
          </Box>
       </div>
    );
