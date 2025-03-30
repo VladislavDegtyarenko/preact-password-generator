@@ -57,7 +57,10 @@ function Password(props) {
                   onClick={copy}
                >
                   {copied ? <CheckIcon /> : <CopyIcon />}
-                  <span className={`tooltip${copied ? " stayVisible" : ""}`}>
+                  <span
+                     className={`tooltip${copied ? " stayVisible" : ""}`}
+                     aria-live="assertive"
+                  >
                      {copied ? "Copied!" : "Copy"}
                   </span>
                </button>
