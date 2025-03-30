@@ -1,11 +1,14 @@
 import Box from "./../layout/Box";
-//import copyIcon from "./../assets/copy.png";
+import { useCopied } from "../hooks/useCopied";
 import { CopyIcon } from "../assets/copy";
 
 import "./Password.css";
+import { CheckIcon } from "../assets/check";
 
 function Password(props) {
-   const { password, length, copy } = props;
+   const { password, length } = props;
+
+   const { copied, triggerCopied } = useCopied();
 
    let width;
    let backgroundColor;
@@ -35,14 +38,28 @@ function Password(props) {
       backgroundColor,
    };
 
+   const copy = async () => {
+      try {
+         await navigator?.clipboard?.writeText?.(password);
+         triggerCopied();
+      } catch (error) {
+         console.warn(`Unable to write to clipboard, ${error}`);
+      }
+   };
+
    return (
       <div className="password">
          <Box>
             <div className="password__inner">
                <div className="password__text">{password || " "}</div>
-               <button className="password__copy" onClick={copy}>
-                  <CopyIcon />
-                  <span className="tooltip">Copy</span>
+               <button
+                  className={`password__copy${copied ? " success" : ""}`}
+                  onClick={copy}
+               >
+                  {copied ? <CheckIcon /> : <CopyIcon />}
+                  <span className={`tooltip${copied ? " stayVisible" : ""}`}>
+                     {copied ? "Copied!" : "Copy"}
+                  </span>
                </button>
                <div className="password__level">
                   <span style={passwordLevelStyles}></span>
