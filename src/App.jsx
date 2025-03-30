@@ -32,7 +32,7 @@ function App() {
   const generatePassword = () => {
     const lowercase = "abcdefghijklmnopqrstuvwxyz";
     const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const numbers = "123456789";
+    const numbers = "0123456789";
     const symbols = "~`!@#$%^&*()_-+={[}]|:;'<,>.?/";
 
     let allowedCharacters = "";
