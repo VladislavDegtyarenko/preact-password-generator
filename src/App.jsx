@@ -26,9 +26,7 @@ function App() {
    const [password, setPassword] = useState("");
 
    useEffect(() => {
-      if (settings.autoGenerate) {
-         generatePassword();
-      }
+      generatePassword();
    }, [settings]);
 
    const generatePassword = () => {

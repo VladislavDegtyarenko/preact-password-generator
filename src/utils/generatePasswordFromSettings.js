@@ -1,5 +1,14 @@
 export const generatePasswordFromSettings = (settings) => {
-   if (settings.length < 1) {
+   if (
+      !settings.autoGenerate ||
+      settings.length < 4 ||
+      [
+         settings.lowercase,
+         settings.uppercase,
+         settings.numbers,
+         settings.symbols,
+      ].every((v) => v === false)
+   ) {
       return undefined;
    }
 
@@ -19,13 +28,9 @@ export const generatePasswordFromSettings = (settings) => {
       new Uint32Array(settings.length)
    );
 
-   let password = "";
+   const newPassword = indexes.reduce((password, index) => {
+      return password + allowedCharacters[index % allowedCharacters.length];
+   }, "");
 
-   if (!allowedCharacters) return setPassword("");
-
-   for (const index of indexes) {
-      password += allowedCharacters[index % allowedCharacters.length];
-   }
-
-   return password;
+   return newPassword;
 };
