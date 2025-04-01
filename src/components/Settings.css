@@ -32,3 +32,11 @@
    gap: 1rem;
    align-items: center;
 }
+
+.setting-buttons {
+   /* display: grid;
+   
+   grid-template-columns: repeat(4, 1fr); */
+   display: flex;
+   gap: 0.5rem;
+}

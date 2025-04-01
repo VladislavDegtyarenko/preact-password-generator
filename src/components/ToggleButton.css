@@ -1,0 +1,80 @@
+.toggle-button {
+   display: flex;
+   font-weight: 700;
+   justify-content: center;
+   text-align: center;
+   width: 25%;
+}
+
+.toggle-button input {
+   width: 0;
+   height: 0;
+   position: absolute;
+   opacity: 0;
+}
+
+.toggle-button label {
+   background-color: var(--mid-alt-color);
+   color: var(--light-color);
+   border-radius: var(--border-radius);
+   padding: 1rem 0.5rem;
+   cursor: pointer;
+   flex-grow: 1;
+   transition-duration: var(--transition-duration);
+   transition-duration: var(--transition-duration);
+   transition-property: background-color, color, border-color;
+   border-style: solid;
+   border-width: 1.5px;
+   border-color: var(--mid-alt-color);
+   user-select: none;
+   box-sizing: border-box;
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+}
+
+.toggle-button label:before {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   border-radius: inherit;
+   pointer-events: none;
+   box-shadow: 0 0 0.5rem var(--mid-alt-color);
+   transition-property: opacity;
+   transition-duration: var(--transition-duration);
+   opacity: 0;
+}
+
+.toggle-button label:hover:before {
+   opacity: 0.5;
+}
+
+.toggle-button.checked label {
+   background-color: var(--accent-color);
+   color: var(--light-color);
+   border-color: var(--accent-color);
+}
+
+.toggle-button.checked label:hover:before {
+   box-shadow: 0 0 0.5rem var(--accent-color);
+}
+
+.toggle-button__label {
+   font-size: 1.25rem;
+   font-weight: 700;
+   line-height: 1;
+}
+
+.toggle-button__description {
+   font-size: 0.8rem;
+   margin-top: 0.5rem;
+   opacity: 0.8;
+   font-weight: 700;
+   word-break: break-all;
+}

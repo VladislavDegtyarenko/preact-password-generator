@@ -1,7 +1,21 @@
 import "./Length.css";
 
+const MIN = 4;
+const MAX = 48;
+const STEP = 1;
+
 function Length(props) {
    const { value, handleChange } = props;
+
+   const inputAttributes = {
+      name: "length",
+      value: value,
+      min: MIN,
+      max: MAX,
+      step: STEP,
+      onChange: handleChange,
+      title: "Adjust password length",
+   };
 
    return (
       <label className="length">
@@ -9,19 +23,13 @@ function Length(props) {
          <div>
             <input
                type="number"
-               value={value}
-               min={1}
-               name="length"
-               onChange={handleChange}
+               aria-label="Password length input"
+               {...inputAttributes}
             />
             <input
                type="range"
-               min="1"
-               max="40"
-               step="1"
-               value={value}
-               name="length"
-               onChange={handleChange}
+               aria-label="Password length slider"
+               {...inputAttributes}
             />
          </div>
       </label>

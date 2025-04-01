@@ -1,14 +1,23 @@
 body {
    margin: 0;
-   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-      "Droid Sans", "Helvetica Neue", sans-serif;
+   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    background-color: var(--dark-color);
+   background: linear-gradient(
+      to bottom,
+      var(--dark-color),
+      var(--darker-color)
+   );
+   background: radial-gradient(var(--dark-color), var(--darker-color));
    color: var(--light-color);
-   --dark-color: #192e4a;
+   --dark-color: #1d3758;
+   --darker-color: #131e2e;
    --mid-color: #457b9d;
-   --mid-alt-color: #bbb;
+   --mid-alt-color: #949494;
+   --mid-alt-color-pressed: #858585;
    --light-color: #eee;
    --accent-color: #dc3643;
    --accent-color-pressed: #d42534;
@@ -20,11 +29,13 @@ body {
    --shadow-color: #33333366;
    --border-radius: 0.5em;
    --hover-glow-shadow: 0 0 0.5em #dc3643aa;
-   --hover-glow-transition: box-shadow 0.15s linear;
+   --transition-duration: 0.2s;
+   --hover-glow-transition: box-shadow var(--transition-duration) linear;
 }
 
 code {
-   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
 }
 
 input[type="range"] {
@@ -62,5 +73,5 @@ body,
 #app,
 #root {
    height: 100%;
-   min-width: 320px;
+   min-width: 360px;
 }

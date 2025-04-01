@@ -33,7 +33,9 @@ function Password(props) {
       <div className="password">
          <Box>
             <div className="password__inner">
-               <div className="password__text">{password || " "}</div>
+               <div className="password__text" role="button" onClick={copy}>
+                  {password || " "}
+               </div>
                <button
                   className={`password__copy${copied ? " success" : ""}`}
                   onClick={copy}

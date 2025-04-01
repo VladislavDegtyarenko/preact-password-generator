@@ -2,8 +2,7 @@ footer {
    font-size: 0.675em;
    text-align: center;
    color: var(--light-color);
-   margin-top: auto;
-   padding-top: 1em;
+   margin-top: 1.5rem;
 }
 
 footer div:not(:last-child) {

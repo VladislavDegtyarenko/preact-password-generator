@@ -1,7 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
-
-// Layout
-import Container from "./layout/Container";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 // Components
 import Password from "./components/Password";
@@ -16,7 +14,7 @@ import { generatePasswordFromSettings } from "./utils/generatePasswordFromSettin
 import "./App.css";
 
 function App() {
-   const [settings, setSettings] = useState({
+   const [settings, setSettings] = useLocalStorage("password-settings", {
       lowercase: true,
       uppercase: true,
       numbers: true,
@@ -36,7 +34,9 @@ function App() {
    const generatePassword = () => {
       const newPassword = generatePasswordFromSettings(settings);
 
-      setPassword(newPassword);
+      if (newPassword) {
+         setPassword(newPassword);
+      }
    };
 
    const changeSettings = (e) => {
@@ -50,7 +50,7 @@ function App() {
 
    return (
       <div className="App">
-         <Container>
+         <div className="container">
             <div className="App__inner">
                <Header />
                <Password password={password} length={settings.length} />
@@ -61,7 +61,7 @@ function App() {
                />
                <Footer />
             </div>
-         </Container>
+         </div>
       </div>
    );
 }
