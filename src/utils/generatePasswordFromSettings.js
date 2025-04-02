@@ -1,6 +1,5 @@
 export const generatePasswordFromSettings = (settings) => {
    if (
-      !settings.autoGenerate ||
       settings.length < 4 ||
       [
          settings.lowercase,

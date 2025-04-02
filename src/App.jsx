@@ -12,6 +12,7 @@ import { generatePasswordFromSettings } from "./utils/generatePasswordFromSettin
 
 // Styles
 import "./App.css";
+import useLayoutEffectOnce from "./hooks/isFirstLayoutRender";
 
 function App() {
    const [settings, setSettings] = useLocalStorage("password-settings", {
@@ -24,18 +25,21 @@ function App() {
    });
 
    const [password, setPassword] = useState("");
+   const { isFirstRender } = useLayoutEffectOnce();
 
-   useEffect(() => {
-      generatePassword();
-   }, [settings]);
-
-   const generatePassword = () => {
+   function generatePassword() {
       const newPassword = generatePasswordFromSettings(settings);
 
       if (newPassword) {
          setPassword(newPassword);
       }
-   };
+   }
+
+   useEffect(() => {
+      if (settings.autoGenerate || isFirstRender) {
+         generatePassword();
+      }
+   }, [settings, isFirstRender]);
 
    const changeSettings = (e) => {
       const { name, value, type, checked } = e.target;
